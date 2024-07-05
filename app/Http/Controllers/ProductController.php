@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -102,7 +104,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Producto::find($id);
+        $product = Product::find($id);
         Storage::disk('public')->delete($product->main_image);
         $product->delete();
 

@@ -20,16 +20,16 @@
                         <input type="text" name="name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="lastname" class="form-label">Apellido:</label>
-                        <input type="text" name="lastname" class="form-control" id="lastname" required>
+                        <label for="last_name" class="form-label">Apellido:</label>
+                        <input type="text" name="last_name" class="form-control" id="last_name" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" name="email" class="form-control" id="email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Nombre de usuario:</label>
-                        <input type="text" name="username" class="form-control" id="username" required>
+                        <label for="user_name" class="form-label">Nombre de usuario:</label>
+                        <input type="text" name="user_name" class="form-control" id="user_name" required>
                     </div>
                     {{-- contraseña --}}
                     @csrf

@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('posts.update', $product) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('products.update', $product) }}" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre:</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $product->name) }}" required>
