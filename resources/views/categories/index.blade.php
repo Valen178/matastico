@@ -14,7 +14,7 @@
                 <a href="{{ route('categories.create') }}" class="btn btn-primary">Agregar una categoria</a>
             </div>
             <ul>
-                @foreach ($category as $category)
+                @foreach ($categories as $category)
                 <li>{{ $category->name }}
                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
                         <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning">Editar</a>
