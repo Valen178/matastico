@@ -1,0 +1,39 @@
+@extends('layouts.main')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Productos</h1>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div>
+                <a href="{{ route('products.create') }}" class="btn btn-primary">Agregar un producto</a>
+            </div>
+            <ul>
+                @foreach ($product as $product)
+                    <li>{{ $product->name }}
+                        @if ($product->main_image)
+                            <img width="50" src="{{ asset('storage/'.$product->main_image) }}" alt="{{ $product->name }}">
+                        @else
+                            <img width="50" src="{{ asset('assets/img/No-Image-Placeholder.svg') }}" alt="sin imagen">
+                        @endif
+                        <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                            <a href="{{ route('product.edit', $post->id) }}" class="btn btn-warning">Editar</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
+                    </li>
+                @endforeach
+                <div class="py-5">
+                    {{ $products->links() }}
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+@endsection
