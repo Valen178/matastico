@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('products.create', compact('users'));
+        $categories = Category::all();
+        return view('products.create', compact('users', 'categories'));
     }
 
     /**
@@ -41,12 +43,12 @@ class ProductController extends Controller
 
         if($request->hasFile('main_image'))
         {
-            $products->main_image = $request->file('main_image')->store('products', 'public');
+            $product->main_image = $request->file('main_image')->store('products', 'public');
         } else {
-            $products->main_image = null;
+            $product->main_image = null;
         }
 
-        $products->save();
+        $product->save();
 
         return redirect()->route('products.index')->with('status', 'El producto se ha creado exitosamente');
     }
@@ -64,9 +66,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $products = Product::find($id);
+        $product = Product::find($id);
         $users = User::all();
-        return view('products.edit', compact('products', 'users'));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'users', 'categories'));
     }
 
     /**
@@ -105,7 +108,9 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::find($id);
-        Storage::disk('public')->delete($product->main_image);
+        if($product->main_image != null){
+            Storage::disk('public')->delete($product->main_image);
+        }
         $product->delete();
 
         return redirect()->route('products.index')
