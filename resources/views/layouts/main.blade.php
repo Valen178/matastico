@@ -35,6 +35,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{ url('productos') }}">Productos</a>
                                 </li>
+                                @if(auth()->check())
+                                    @if (auth()->user()->role === 'admin')
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ url('users') }}">Usuarios</a>
+                                        </li>  
+                                    @endif
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ url('products') }}">ABM Productos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ url('categories') }}">Categorias</a>
+                                    </li>
+                                @else 
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ url('login') }}">Login</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>

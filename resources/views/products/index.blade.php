@@ -1,10 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-12">
             <h1>Productos</h1>
+            <h2>{{ auth()->user()->name }}</h2>
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
@@ -29,11 +30,9 @@
                         </form>
                     </li>
                 @endforeach
-                <div class="py-5">
-                    {{ $products->links() }}
-                </div>
             </ul>
         </div>
     </div>
+    {{ $products->links() }}
 </div>
 @endsection

@@ -1,10 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <section class="row">
             <div class="col-12">
-                <h2>Lista de usuarios</h2>
+                <h1>Lista de usuarios</h1>
+                <h2>{{ auth()->user()->name }}</h2>
                 <div>
                     <a href="{{ route('users.create') }}" class="btn btn-primary">Agregar usuario</a>
                 </div>
@@ -22,5 +23,6 @@
                 </ul>
             </div>
         </section>
+        {{ $users->links() }}
     </div>
 @endsection

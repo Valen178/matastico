@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-
+use App\Models\Product;
 
 Route::get('/', function () {
-    return view('home');
+    return view('index');
 });
 
 Route::get('contacto', function () {
@@ -19,13 +19,36 @@ Route::get('nosotros', function () {
 });
 
 Route::get('productos', function () {
-    return view('products');
+    $products = Product::all();
+    return view('products', compact('products'));
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users', 'index');
+});
+
+Route::controller(ProductController::class)->group(function(){
+    Route::get('/products', 'index');
+});
+
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('/categories', 'index');
 });
 
 Route::resource('users', UserController::class);
 
-Route::resources([
-    'users'=> UserController::class,
-    'products'=> ProductController::class,
-    'categories'=> CategoryController::class
-]);
+Route::resource('products', ProductController::class);
+
+Route::resource('categories', CategoryController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::resources([
+        'users'=> UserController::class,
+        'products'=> ProductController::class,
+        'categories'=> CategoryController::class
+    ]);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
