@@ -5,7 +5,12 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Productos</h1>
+            <h1 class="text-test">Productos</h1>
+            @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+            @endif
         </div>
         <ul>
             @foreach ($products->chunk(4) as $chunk)
@@ -16,8 +21,10 @@
                                 <img src="{{ $product->main_image }}" class="card-img-top" alt="Product image" height="319" width="319">                      
                                 <div class="card-block">
                                     <h4 class="card-title">{{ $product->name }}</h4>
-                                    <p class="card-text">{{ $product->price }}</p>
-                                    <a class="btn btn-success">Agregar Al Carrito</a>
+                                    <p class="card-text">${{ $product->price }}</p>
+                                    @if (auth()->check())
+                                        <a href="{{ route('product.add', $product) }}" class="btn btn-success">Agregar al carrito</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

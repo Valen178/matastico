@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Models\Product;
 
 Route::get('/', function () {
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
         'products'=> ProductController::class,
         'categories'=> CategoryController::class
     ]);
+    Route::get('product/{product}', [OrderController::class, 'addProduct'])->name('product.add');
+    Route::get('product/remove/{id}', [OrderController::class, 'removeProduct'])->name('product.remove');
+    Route::get('checkout', [OrderController::class, 'showCart'])->name('checkout');
 });
 
 Auth::routes();
