@@ -1,11 +1,12 @@
+@extends('layouts.footer')
 @extends('layouts.main')
 
 @section('content')
 
-<div class="container">
+<div class="container container-main">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-test">Productos</h1>
+            <h1 class="titulo">PRODUCTOS</h1>
             @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -18,13 +19,13 @@
                     @foreach($chunk as $product)
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="card">
-                                <img src="{{ $product->main_image }}" class="card-img-top" alt="Product image" height="319" width="319">                      
+                                <img src="{{ asset('storage/'.$product->main_image) }}" class="card-img-top img-fluid imagen imagen-productos" alt="Product image" height="319" width="319">                      
                                 <div class="card-block">
-                                    <h4 class="card-title">{{ $product->name }}</h4>
-                                    <p class="card-text">${{ $product->price }}</p>
-                                    @if (auth()->check())
-                                        <a href="{{ route('product.add', $product) }}" class="btn btn-success">Agregar al carrito</a>
-                                    @endif
+                                    <h4 class="card-title centrado nombre-productos">{{ $product->name }}</h4>
+                                    <p class="card-text centrado">${{ $product->price }}</p>
+                                    <div class="div-agregar-productos">
+                                        <a href="{{ route('product.add', $product) }}" class="boton-agregar-carrito">Agregar al carrito</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

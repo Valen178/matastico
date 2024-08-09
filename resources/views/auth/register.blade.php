@@ -1,3 +1,4 @@
+@extends('layouts.footer2')
 @extends('layouts.main')
 
 @section('content')

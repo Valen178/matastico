@@ -1,3 +1,4 @@
+@extends('layouts.footer2')
 @extends('layouts.app')
 
 @section('content')
@@ -5,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Panel') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +15,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('¡Esta logeado!') }}
                 </div>
             </div>
         </div>

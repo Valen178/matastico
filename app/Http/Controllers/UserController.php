@@ -33,9 +33,9 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'name'  =>  'required | min:3 | max:64',
+            'name'  =>  'required | min:3 | max:15',
             'email' =>  'required | min:10 | max:64',
-            'last_name' => 'required | min:4 | max:64',
+            'last_name' => 'required | min:4 | max:25',
             'user_name' => 'required | min:3 | max:64'
         ]);
 
@@ -67,9 +67,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name'  =>  'required | min:3 | max:64',
+            'name'  =>  'required | min:3 | max:15',
             'email' =>  'required | min:10 | max:64',
-            'last_name' => 'required | min:4 | max:64',
+            'last_name' => 'required | min:4 | max:25',
             'user_name' => 'required | min:3 | max:64'
         ]);
 

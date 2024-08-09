@@ -36,7 +36,7 @@ class ProductController extends Controller
             'content' => 'required',
             'price' => 'required',
             'category_id' => 'required',
-            'main_image' => 'image|mimes:jpeg,png,gif,webp,svg|max:2048'
+            'main_image' => 'image|mimes:jpeg,png,gif,svg,jpg|max:2048'
         ]);
 
         $product = Product::create($request->all());
@@ -82,7 +82,7 @@ class ProductController extends Controller
             'content' => 'required',
             'category_id' => 'required',
             'price' => 'required',
-            'main_image' => 'image|mimes:jpeg,png,gif,webp,svg|max:2048'
+            'main_image' => 'image|mimes:jpeg,png,gif,svg|max:2048'
         ]);
 
         $product->update($request->all());

@@ -1,3 +1,4 @@
+@extends('layouts.footer')
 @extends('layouts.app')
 
 @section('content')
@@ -28,7 +29,7 @@
                         <label for="content" class="form-label">Descripcion:</label>
                         <textarea name="content" id="content" cols="30" rows="10" class="form-control" required>{{ old('content', $product->content) }}</textarea>
                     </div>
-                    <div class=" mb-3 input-group">
+                    <div class="mb-3 input-group">
                         <label class="input-group-text" for="main_image">Imagen Principal</label>
                         <input type="file" name="main_image" class="form-control" id="main_image">
                     </div> {{-- No se si cambia la foto --}}

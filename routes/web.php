@@ -8,7 +8,8 @@ use App\Http\Controllers\OrderController;
 use App\Models\Product;
 
 Route::get('/', function () {
-    return view('index');
+    $products = Product::all();
+    return view('index', compact('products'));
 });
 
 Route::get('contacto', function () {

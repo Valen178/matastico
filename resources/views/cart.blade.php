@@ -1,3 +1,4 @@
+@extends('layouts.footer2')
 @extends('layouts.main')
 
 @section('content')
@@ -5,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-test" >Checkout</h1>
+            <h1 class="titulo">Checkout</h1>
             @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -13,14 +14,14 @@
             @endif
         </div>
         @if ($order)
-            <h2>Numero de orden: {{ $order->id }}</h2>
-            <h2>Total: {{ $order->total }}</h2>
-            <h3>Productos</h3>
-            <ul>
+            <h2 class="subtitulo-carrito">Numero de orden: {{ $order->id }}</h2>
+            <h2 class="subtitulo-carrito">Total: {{ $order->total }}</h2>
+            <h3 class="subtitulo-carrito">Productos</h3>
+            <ul class="ul-productos">
                 @foreach (json_decode($order->products) as $product )
-                    <li>{{ $product->name }} ${{ $product->price }}
+                    <li class="li-productos">{{ $product->name }} ${{ $product->price }}
                         @if (auth()->check())
-                            <a href="{{ route('product.remove', $product->id) }}">Eliminar</a>
+                            <a href="{{ route('product.remove', $product->id) }}" class="a-productos">Eliminar</a>
                         @endif
                     </li>
                 @endforeach
